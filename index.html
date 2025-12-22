@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهندسی قدرت | آریا جیم</title>
+    
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- تنظیمات کلی و متغیرها --- */
+        :root {
+            --primary-color: #D4E913;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --text-light: #ffffff;
+            --text-grey: #a0a0a0;
+            --font-main: 'Vazirmatn', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+        body { font-family: var(--font-main); background-color: var(--bg-dark); color: var(--text-light); overflow-x: hidden; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- دکمه‌ها --- */
+        .btn { display: inline-block; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; text-align: center; }
+        .btn-primary { background-color: var(--primary-color); color: #000; border: 2px solid var(--primary-color); }
+        .btn-primary:hover { background-color: transparent; color: var(--primary-color); box-shadow: 0 0 15px rgba(212, 233, 19, 0.4); }
+        .btn-outline { border: 2px solid #fff; color: #fff; margin-right: 10px; }
+        .btn-outline:hover { background-color: #fff; color: #000; }
+
+        /* --- هدر --- */
+        header { position: absolute; top: 0; left: 0; width: 100%; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent); }
+        .logo-text { font-size: 1.5rem; font-weight: 900; color: #fff; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 0.95rem; font-weight: 500; opacity: 0.8; }
+        .nav-links a:hover { opacity: 1; color: var(--primary-color); }
+        .header-actions { display: flex; gap: 15px; align-items: center; }
+
+        /* --- بخش اصلی (Hero) --- */
+        .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: flex-start; padding: 0 10%; background: url('00/Untitled-1.webp') no-repeat center center/cover; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; max-width: 600px; }
+        .hero h1 { font-size: 4rem; line-height: 1.2; margin-bottom: 20px; font-weight: 900; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; color: #ddd; }
+
+        /* --- گرید محصولات --- */
+        .categories { padding: 80px 5%; max-width: 1400px; margin: 0 auto; }
+        .section-title { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 30px; text-align: right; font-weight: 700; }
+        .grid-container { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 280px); gap: 20px; }
+        .grid-item { position: relative; border-radius: 20px; overflow: hidden; border: 1px solid #333; background: var(--bg-card); transition: 0.4s; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .grid-item:hover { border-color: var(--primary-color); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.7); }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; padding: 0; transition: 0.5s; display: block; }
+        .grid-item:hover img { transform: scale(1.1); }
+        .grid-item::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); pointer-events: none; }
+        .grid-label { position: absolute; bottom: 20px; right: 20px; font-size: 1.3rem; font-weight: 800; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,1); z-index: 2; }
+        .item-large { grid-column: 3 / 5; grid-row: 1 / 3; border: 2px solid var(--primary-color); }
+        .item-1 { grid-column: 1 / 2; grid-row: 1 / 2; }
+        .item-2 { grid-column: 2 / 3; grid-row: 1 / 2; }
+        .item-3 { grid-column: 1 / 2; grid-row: 2 / 3; }
+        .item-4 { grid-column: 2 / 3; grid-row: 2 / 3; }
+
+        /* --- ویژگی‌ها --- */
+        .features { display: flex; justify-content: space-around; padding: 60px 5%; background: #111; text-align: center; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+        .feature-box { max-width: 300px; padding: 20px; }
+        .feature-icon img { height: 60px; margin: 0 auto 20px; filter: drop-shadow(0 0 5px rgba(212, 233, 19, 0.5)); }
+        .feature-box h3 { color: #fff; margin-bottom: 10px; }
+        .feature-box p { color: var(--text-grey); font-size: 0.9rem; }
+
+        /* --- بخش تیتان --- */
+        .titan-section { padding: 100px 5%; display: flex; align-items: center; justify-content: center; gap: 50px; background: radial-gradient(circle at center, #1a1a1a 0%, #000 70%); }
+        .titan-content { flex: 1; max-width: 500px; }
+        .titan-image { flex: 1.2; position: relative; display: flex; justify-content: center; }
+        .titan-content h2 { font-size: 2.5rem; margin-bottom: 30px; }
+        .titan-content span { color: var(--primary-color); }
+        .titan-list li { position: relative; padding-right: 25px; margin-bottom: 15px; color: #ccc; }
+        .titan-list li::before { content: '•'; color: var(--primary-color); position: absolute; right: 0; font-size: 1.5rem; line-height: 1rem; }
+        .titan-image::before { content: ''; position: absolute; width: 300px; height: 300px; background: var(--primary-color); filter: blur(100px); opacity: 0.2; z-index: 0; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .titan-image img { position: relative; z-index: 1; max-height: 500px; }
+
+        /* --- پروژه‌ها --- */
+        .portfolio { padding: 80px 5%; }
+        .portfolio-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { position: relative; border-radius: 12px; overflow: hidden; height: 250px; cursor: pointer; } /* اضافه شدن پوینتر برای لینک */
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
+        .gallery-overlay h4 { color: #fff; margin-bottom: 5px; }
+        .gallery-overlay p { color: #aaa; font-size: 0.8rem; }
+
+        /* --- فوتر --- */
+        .cta-bar { background: var(--primary-color); padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; color: #000; }
+        .cta-bar h2 { margin: 0; font-size: 1.8rem; font-weight: 800; }
+        .cta-bar .btn { background: #000; color: var(--primary-color); border: none; }
+        footer { background: #050505; padding: 60px 5% 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 40px; margin-bottom: 50px; }
+        .footer-col h4 { color: #fff; margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #888; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: var(--primary-color); }
+        .socials { display: flex; gap: 15px; margin-top: 20px; }
+        .copyright { text-align: center; color: #444; font-size: 0.8rem; border-top: 1px solid #1a1a1a; padding-top: 20px; }
+
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.5rem; }
+            .grid-container { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+            .item-large { grid-column: 1 / 3; grid-row: 1; height: 350px; }
+            .item-1, .item-2, .item-3, .item-4 { grid-column: auto; grid-row: auto; height: 200px; }
+            .titan-section { flex-direction: column-reverse; text-align: center; }
+            .titan-list li { padding-right: 0; list-style: inside; }
+            .titan-list li::before { content: none; }
+            .features { flex-direction: column; gap: 40px; }
+            .feature-box { margin: 0 auto; }
+            .nav-links { display: none; }
+            .cta-bar { flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header data-aos="fade-down">
+        <div class="logo">
+            <h2 class="logo-text">ARIA GYM</h2>
+        </div>
+        <nav class="nav-links">
+            <a href="next/page-show.html">محصولات</a>
+            <a href="next/page-show.html">راهکارها</a>
+            <a href="next/page-show.html">درباره ما</a>
+            <a href="next/page-show.html">پروژه‌ها</a>
+        </nav>
+        <div class="header-actions">
+            
+        </div>
+		<div class="header-actions">
+        <a href="tel:09215390742" class="header-phone">09215390742</a>
+        
+        <a href="next/page-show.html" class="btn btn-primary">دریافت مشاوره</a>
+    </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-left">
+            <h1>مهندسی قدرت،<br>طراحی فـردا.</h1>
+            <p>تولیدکننده پیشرو تجهیزات بدنسازی حرفه‌ای با بیومکانیک پیشرفته و متریال صنعتی.</p>
+            <div class="buttons">
+                <a href="next/page-show.html" class="btn btn-primary">مشاهده محصولات</a>
+                <a href="next/page-show.html" class="btn btn-outline">تماشای فیلم معرفی</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <h3 class="section-title" data-aos="fade-up">سلسله مراتب قدرت</h3>
+        <div class="grid-container">
+            <a href="next/page-show.html" class="grid-item item-large" data-aos="zoom-in" style="display:block;">
+                <img src="00/Untitled-2.webp" alt="دستگاه سیم کش">
+                <div class="grid-label">دستگاه‌های سیم‌کش</div>
+            </a>
+
+            <a href="next/page-show.html" class="grid-item item-1" data-aos="fade-up" data-aos-delay="100" style="display:block;">
+                <img src="00/15.webp" alt="وزنه آزاد">
+                <div class="grid-label">وزنه آزاد</div>
+            </a>
+            <a href="next/page-show.html" class="grid-item item-2" data-aos="fade-up" data-aos-delay="200" style="display:block;">
+                <img src="00/Untitled-3.webp" alt="وزنه‌ها">
+                <div class="grid-label">وزنه‌ها</div>
+            </a>
+            <a href="next/page-show.html" class="grid-item item-3" data-aos="fade-up" data-aos-delay="300" style="display:block;">
+                <img src="00/Untitled-5.webp" alt="سازه و کراس‌فیت">
+                <div class="grid-label">سازه‌ها و کراس‌فیت</div>
+            </a>
+            <a href="next/page-show.html" class="grid-item item-4" data-aos="fade-up" data-aos-delay="400" style="display:block;">
+                <img src="00/Untitled-4.webp" alt="وزنه و نیمکت">
+                <div class="grid-label">وزنه‌ها و نیمکت</div>
+            </a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-box" data-aos="fade-up">
+            <div class="feature-icon"><img src="00/Untitled-8.webp" alt="Biomechanics"></div>
+            <h3>بیومکانیک دقیق</h3>
+            <p>طراحی بر اساس آناتومی دقیق بدن برای جلوگیری از آسیب و افزایش بازدهی.</p>
+        </div>
+        <div class="feature-box" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon"><img src="00/Untitled-7.webp" alt="Industrial Grade"></div>
+            <h3>دوام صنعتی گرید بالا</h3>
+            <p>استفاده از پروفیل‌های صنعتی با ضخامت بالا برای عمر طولانی دستگاه.</p>
+        </div>
+        <div class="feature-box" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon"><img src="00/Untitled-6.webp" alt="Customization"></div>
+            <h3>شخصی‌سازی کامل</h3>
+            <p>قابلیت انتخاب رنگ بدنه و تشک‌ها متناسب با برند باشگاه شما.</p>
+        </div>
+    </section>
+
+    <section class="titan-section">
+        <div class="titan-content" data-aos="fade-left">
+            <h2>سری تیتان: <span>نهایت مهندسی</span></h2>
+            <ul class="titan-list">
+                <li>تحمل وزن فوق‌العاده بالا</li>
+                <li>سیستم حرکتی خطی دوگانه</li>
+                <li>قابلیت نصب اکسسوری‌های متعدد</li>
+                <li>پوشش رنگ الکترواستاتیک مقاوم</li>
+            </ul>
+            <a href="next/page-show.html" class="btn btn-primary" style="margin-top: 20px;">مشاهده مشخصات فنی</a>
+        </div>
+        <div class="titan-image" data-aos="zoom-out">
+            <img src="00/زیر نقاط سبز.webp" alt="Titan Rack System">
+        </div>
+    </section>
+
+    <section class="portfolio">
+        <div class="portfolio-header">
+            <h3 class="section-title" style="margin:0;">انتخاب حرفه‌ای‌ها</h3>
+            <a href="next/page-show.html" style="color:#888; font-size:0.9rem;">مشاهده همه پروژه‌ها ></a>
+        </div>
+        <div class="gallery">
+            <a href="next/page-show.html" class="gallery-item" data-aos="flip-right" style="display:block;">
+                <img src="00/Untitled-13.webp" alt="Gym 1">
+                <div class="gallery-overlay">
+                    <h4>مجموعه ورزشی آوان</h4>
+                    <p>تجهیز کامل بخش وزنه آزاد و کاردیو</p>
+                </div>
+            </a>
+            <a href="next/page-show.html" class="gallery-item" data-aos="flip-right" data-aos-delay="100" style="display:block;">
+                <img src="00/Untitled-12.webp" alt="Gym 2">
+                <div class="gallery-overlay">
+                    <h4> باشگاه پالاس</h4>
+                    <p>طراحی لوکس با سری تیتان طلایی</p>
+                </div>
+            </a>
+            <a href="next/page-show.html" class="gallery-item" data-aos="flip-right" data-aos-delay="200" style="display:block;">
+                <img src="00/Untitled-11.webp" alt="Gym 3">
+                <div class="gallery-overlay">
+                    <h4>باشگاه اکسیژن رویال - تهران</h4>
+                    <p>بالاترین استاندارد بیومکانیک</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <div class="cta-bar">
+        <h2>آماده‌اید باشگاه رویایی خود را بسازید؟</h2>
+        <a href="next/page-show.html" class="btn">شروع پروژه</a>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">
+                    <h2 class="logo-text" style="color:#fff;">ARIA</h2>
+                </div>
+                <div class="socials">
+                    <img src="00/Untitled-14.webp" alt="Social Media" style="width: auto; height: 30px;">
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>محصولات</h4>
+                <ul>
+                    <li><a href="next/page-show.html">دستگاه‌های سیم‌کش</a></li>
+                    <li><a href="next/page-show.html">وزنه آزاد</a></li>
+                    <li><a href="next/page-show.html">کاردیو</a></li>
+                    <li><a href="next/page-show.html">سازه‌ها</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>شرکت</h4>
+                <ul>
+                    <li><a href="next/page-show.html">درباره ما</a></li>
+                    <li><a href="next/page-show.html">تاریخچه</a></li>
+                    <li><a href="next/page-show.html">گواهینامه‌ها</a></li>
+                    <li><a href="next/page-show.html">تماس با ما</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>منابع</h4>
+                <ul>
+                    <li><a href="next/page-show.html">وبلاگ</a></li>
+                    <li><a href="next/page-show.html">کاتالوگ‌ها</a></li>
+                    <li><a href="next/page-show.html">پشتیبانی</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © ۲۰۲۴ تمامی حقوق برای شرکت محفوظ است.
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
